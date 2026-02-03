@@ -249,7 +249,7 @@ export default function LayananPage() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="aspect-[4/3] bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center relative overflow-hidden">
                 <img
-                  src="/portfolio-5.svg"
+                  src="/portfolio-5.jpg"
                   alt="Portofolio 5"
                   className="w-full h-full object-cover"
                   onError={(e) => {
