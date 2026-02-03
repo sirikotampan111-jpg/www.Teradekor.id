@@ -57,7 +57,7 @@ export default function KontakPage() {
       icon: ShoppingBag,
       name: 'Shopee',
       handle: 'Terradekor Official Store',
-      link: 'https://shopee.co.id/terradekor',
+      link: 'https://id.shp.ee/zh8NYmq',
       color: 'from-[#EE4D2D] to-[#C73E26]',
     },
   ];
