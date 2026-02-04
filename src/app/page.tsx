@@ -58,11 +58,8 @@ const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
   const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    } else {
-      controls.start({ opacity: 0, y: 50 });
-    }
+    if (inView) controls.start({ opacity: 1, y: 0 });
+    else controls.start({ opacity: 0, y: 50 });
   }, [inView, controls]);
 
   return (
@@ -80,23 +77,21 @@ const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Video Background */}
+      {/* VIDEO BACKGROUND */}
       <video
-        className="fixed inset-0 w-full h-full object-cover -z-20 filter brightness-75 contrast-125"
+        className="fixed inset-0 w-full h-full object-cover -z-20"
         src="/office.mp4"
         autoPlay
         loop
         muted
         playsInline
       />
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 -z-10"></div>
-      {/* Particle Background */}
-      <div className="particle-bg fixed inset-0 -z-15"></div>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/60 -z-10"></div>
 
       <FloatingWhatsApp />
 
-      {/* Hero Section */}
+      {/* HERO SECTION */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-20">
         <ScrollFadeIn>
           <AnimatedText className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white shimmer">
@@ -133,7 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Advantages Section */}
+      {/* ADVANTAGES SECTION */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
           <ScrollFadeIn>
@@ -156,30 +151,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Highlights Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <ScrollFadeIn>
-            <AnimatedText className="text-4xl sm:text-5xl font-bold text-white shimmer">
-              {sections[2].title}
-            </AnimatedText>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full mb-8"></div>
-          </ScrollFadeIn>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {sections[2].items.map((item, idx) => (
-            <ScrollFadeIn key={idx}>
-              <div className="card border-2 border-[#C9A24D]/20 p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform shimmer animate-float">
-                <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
-                <p className="text-gray-200">{item.desc}</p>
-              </div>
-            </ScrollFadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* CTA SECTION */}
       <section className="py-20 text-center">
         <ScrollFadeIn>
           <AnimatedText className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white shimmer">
@@ -212,4 +184,4 @@ export default function Home() {
       </section>
     </div>
   );
-          }
+}
