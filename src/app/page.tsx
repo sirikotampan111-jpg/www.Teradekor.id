@@ -6,24 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import { motion } from 'framer-motion';
-
-// AnimatedText: Huruf muncul dari kiri/kanan menyatu
-const AnimatedText = ({ text }: { text: string }) => (
-  <span className="inline-flex flex-wrap justify-center overflow-hidden">
-    {text.split('').map((char, i) => (
-      <motion.span
-        key={i}
-        initial={{ x: i % 2 === 0 ? -80 : 80, opacity: 0, skewX: i % 2 === 0 ? 15 : -15 }}
-        whileInView={{ x: 0, opacity: 1, skewX: 0 }}
-        viewport={{ once: true }}
-        transition={{ type: 'spring', stiffness: 150, damping: 20, delay: i * 0.03 }}
-        className="inline-block"
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </motion.span>
-    ))}
-  </span>
-);
+import Image from 'next/image';
 
 export default function Home() {
   const advantages = [
@@ -36,38 +19,46 @@ export default function Home() {
   ];
 
   const highlights = [
-    { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', icon: '🏠' },
-    { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', icon: '🎨' },
-    { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.', icon: '🪵' },
-    { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.', icon: '🌿' },
-    { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.', icon: '🚪' },
-    { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.', icon: '🛠️' },
+    { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', icon: '/logo.jpg' },
+    { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', icon: '/logo.jpg' },
+    { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.', icon: '/logo.jpg' },
+    { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.', icon: '/logo.jpg' },
+    { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.', icon: '/logo.jpg' },
+    { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.', icon: '/logo.jpg' },
   ];
 
+  // Animation variants untuk huruf masuk dari kiri dan kanan
+  const letterVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 }
+  };
+
   return (
-    <div className="min-h-screen relative">
+    <div className="relative min-h-screen">
       {/* Floating WhatsApp */}
       <FloatingWhatsApp />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Overlay Foto */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background Foto */}
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/office.jpg"
             alt="Office Background"
-            className="w-full h-full object-cover object-top fixed top-0 left-0"
+            fill
+            className="object-cover object-center"
+            style={{ zIndex: -1 }}
           />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/60" /> {/* overlay supaya teks jelas */}
         </div>
 
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 py-20 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center min-h-screen">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full mb-8"
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full"
           >
             <Star className="w-5 h-5 text-[#C9A24D]" />
             <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">
@@ -75,80 +66,81 @@ export default function Home() {
             </span>
           </motion.div>
 
-          {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight">
-            <AnimatedText text="Solusi Interior & Konstruksi Premium" />
-            <br />
-            <AnimatedText text="Terima Beres" />
+          {/* Animated Heading */}
+          <h1 className="mt-8 text-center text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-white leading-tight flex flex-wrap justify-center">
+            {"Solusi Interior & Konstruksi Premium".split("").map((letter, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.03, type: "spring", stiffness: 100 }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
           </h1>
 
           {/* Subheading */}
-          <p className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed mt-6">
-            <AnimatedText text="Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional." />
-          </p>
+          <motion.p
+            className="mt-6 text-xl sm:text-2xl text-gray-200 font-bold max-w-4xl text-center leading-relaxed"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional.
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <motion.div
+            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
             <Link href="/konsultasi">
-              <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                <AnimatedText text="Konsultasi Gratis" />
+              <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 flex items-center">
+                <MessageCircle className="w-5 h-5 mr-2" /> Konsultasi Gratis
               </Button>
             </Link>
             <Link href="/produk">
-              <Button variant="outline" className="border-2 border-[#C9A24D] text-[#C9A24D] px-8 py-4 rounded-lg font-bold transition-transform transform hover:scale-105">
-                <AnimatedText text="Lihat Produk" />
-                <ArrowRight className="w-5 h-5 ml-2" />
+              <Button className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center">
+                Lihat Produk <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <a
-              href="https://wa.me/6281251511997"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105"
-            >
-              <Phone className="w-5 h-5" />
-              <AnimatedText text="Hubungi Kami" />
+            <a href="https://wa.me/6281251511997" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105">
+              <Phone className="w-5 h-5" /> <span>Hubungi Kami</span>
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="relative py-20">
-        <div className="absolute inset-0">
-          <img src="/office.jpg" alt="Office Overlay" className="w-full h-full object-cover object-top fixed top-0 left-0" />
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            <AnimatedText text="Tentang Terradekor" />
-          </h2>
-          <p className="text-lg text-gray-200 max-w-3xl mx-auto">
-            <AnimatedText text="PT. Opulent Interior Indonesia (Terradekor.id) adalah produsen dan importir produk interior premium serta penyedia jasa interior dan kontraktor terpadu." />
-          </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Advantages Section */}
       <section className="relative py-20">
+        {/* Background */}
         <div className="absolute inset-0">
-          <img src="/office.jpg" alt="Office Overlay" className="w-full h-full object-cover object-top fixed top-0 left-0" />
-          <div className="absolute inset-0 bg-black/80"></div>
+          <Image src="/office.jpg" alt="Background" fill className="object-cover object-center" />
+          <div className="absolute inset-0 bg-black/70" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">
-            <AnimatedText text="Mengapa Memilih Kami" />
-          </h2>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
+              Mengapa Memilih <span className="text-[#C9A24D]">Kami</span>
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advantages.map((adv, idx) => (
-              <Card key={idx} className="bg-black/40 border border-[#C9A24D]/30 p-6 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+              <Card key={idx} className="bg-black/30 border-2 border-[#C9A24D]/20 p-6 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center">
                     <adv.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#C9A24D]"><AnimatedText text={adv.title} /></h3>
-                  <p className="text-gray-200 font-semibold"><AnimatedText text={adv.description} /></p>
+                  <h3 className="text-xl font-bold text-[#C9A24D]">{adv.title}</h3>
+                  <p className="text-gray-200 font-semibold">{adv.description}</p>
                 </div>
               </Card>
             ))}
@@ -156,41 +148,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Highlights Section */}
+      {/* Product Highlights */}
       <section className="relative py-20">
         <div className="absolute inset-0">
-          <img src="/office.jpg" alt="Office Overlay" className="w-full h-full object-cover object-top fixed top-0 left-0" />
-          <div className="absolute inset-0 bg-black/70"></div>
+          <Image src="/office.jpg" alt="Background" fill className="object-cover object-center" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">
-            <AnimatedText text="Produk & Layanan Premium" />
-          </h2>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
+              Produk & Layanan <span className="text-[#C9A24D]">Premium</span>
+            </h2>
+            <p className="text-xl text-gray-200 font-bold mt-4 max-w-2xl mx-auto">
+              Solusi lengkap untuk kebutuhan interior dan konstruksi Anda
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {highlights.map((item, idx) => (
-              <Card key={idx} className="bg-black/50 border border-[#C9A24D]/30 p-8 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+              <Card key={idx} className="bg-black/30 border-2 border-[#C9A24D]/20 p-8 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
                 <div className="flex flex-col items-center text-center space-y-4">
-                  <img src="/logo.jpg" alt={item.title} className="w-16 h-16 object-contain" />
-                  <h3 className="text-2xl font-bold text-[#C9A24D]"><AnimatedText text={item.title} /></h3>
-                  <p className="text-gray-200 font-semibold"><AnimatedText text={item.description} /></p>
+                  <Image src={item.icon} width={64} height={64} alt={item.title} className="rounded-full"/>
+                  <h3 className="text-2xl font-bold text-[#C9A24D]">{item.title}</h3>
+                  <p className="text-gray-200 font-semibold">{item.description}</p>
                 </div>
               </Card>
             ))}
-          </div>
-
-          <div className="text-center mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/produk">
-              <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
-                <AnimatedText text="Lihat Semua Produk" />
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/layanan">
-              <Button variant="outline" className="border-2 border-[#C9A24D] text-[#C9A24D] px-8 py-4 rounded-lg font-bold transition-transform transform hover:scale-105">
-                <AnimatedText text="Lihat Layanan" />
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
@@ -198,30 +182,31 @@ export default function Home() {
       {/* CTA Section */}
       <section className="relative py-20">
         <div className="absolute inset-0">
-          <img src="/office.jpg" alt="Office Overlay" className="w-full h-full object-cover object-top fixed top-0 left-0" />
-          <div className="absolute inset-0 bg-black/70"></div>
+          <Image src="/office.jpg" alt="Background" fill className="object-cover object-center" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-            <AnimatedText text="Wujudkan Ruang Impian Anda" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white">
+            Wujudkan Ruang Impian Anda
           </h2>
-          <p className="text-2xl text-white/90 font-bold max-w-3xl mx-auto leading-relaxed mb-8">
-            <AnimatedText text="Bersama Terradekor, transformasi ruang Anda menjadi masterpiece yang elegan dan fungsional" />
+          <p className="text-2xl text-white/90 font-bold max-w-3xl mx-auto mt-4">
+            Bersama Terradekor, transformasi ruang Anda menjadi masterpiece yang elegan dan fungsional
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/konsultasi">
-              <Button className="bg-white text-[#C9A24D] font-bold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
-                <Heart className="w-5 h-5 mr-2" />
-                <AnimatedText text="Konsultasi Gratis Sekarang" />
+              <Button className="bg-white text-[#C9A24D] hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 flex items-center">
+                <Heart className="w-5 h-5 mr-2"/> Konsultasi Gratis Sekarang
               </Button>
             </Link>
-            <a href="https://wa.me/6281251511997" target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 bg-gray-900 text-white font-bold px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
-              <Phone className="w-5 h-5" />
-              <AnimatedText text="WhatsApp Kami" />
+            <a href="https://wa.me/6281251511997" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-gray-900 text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105">
+              <Phone className="w-5 h-5"/> <span>WhatsApp Kami</span>
             </a>
           </div>
         </div>
       </section>
     </div>
   );
-                }
+}
