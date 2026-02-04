@@ -50,33 +50,61 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Floating WhatsApp */}
-      <FloatingWhatsApp />
+  <div className="min-h-screen">
+    {/* Floating WhatsApp tetap di sini */}
+    <FloatingWhatsApp />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px)' }}></div>
+    {/* Hero Section */}
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px)',
+          }}
+        ></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center space-y-8">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full"
+          >
+            <Star className="w-5 h-5 text-[#C9A24D]" />
+            <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">
+              Solusi Interior Premium
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight"
+          >
+            Solusi Interior &<br />
+            Konstruksi Premium<br />
+            <span className="bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] bg-clip-text text-transparent">
+              Terima Beres
+            </span>
+          </motion.h1>
         </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full">
-              <Star className="w-5 h-5 text-[#C9A24D]" />
-              <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">Solusi Interior Premium</span>
-            </div>
-
-            {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight">
-              Solusi Interior &<br />
-              Konstruksi Premium<br />
-              <span className="bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] bg-clip-text text-transparent">
-                Terima Beres
-              </span>
-            </h1>
+      </div>
+    </motion.section>
+  </div>
+);
 
             {/* Subheading */}
             <p className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed">
