@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import AnimatedText from '@/components/AnimatedText';
 
 const sections = [
   {
@@ -79,8 +80,11 @@ const ScrollFadeIn = ({ children }: { children: React.ReactNode }) => {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
-      {/* Background Full */}
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Particle Background */}
+      <div className="particle-bg fixed inset-0 -z-20"></div>
+
+      {/* Background Image */}
       <div className="fixed inset-0 -z-10">
         <Image
           src="/office.jpg"
@@ -97,12 +101,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-20">
         <ScrollFadeIn>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+          <AnimatedText className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white shimmer">
             {sections[0].title}
-          </h1>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#C9A24D] mb-6">
+          </AnimatedText>
+          <AnimatedText className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#C9A24D] animate-float">
             {sections[0].subtitle}
-          </h2>
+          </AnimatedText>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
             {sections[0].description}
           </p>
@@ -112,7 +116,7 @@ export default function Home() {
           {sections[0].cta.map((btn, idx) =>
             btn.type === 'link' ? (
               <Link key={idx} href={btn.href}>
-                <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-6 py-3 rounded-lg shadow-2xl premium-hover hover:scale-105 transition-transform">
                   {btn.text}
                 </Button>
               </Link>
@@ -122,7 +126,7 @@ export default function Home() {
                 href={btn.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex justify-center bg-[#25D366] text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform"
+                className="inline-flex justify-center bg-[#25D366] text-white font-bold px-6 py-3 rounded-lg shadow-2xl premium-hover hover:scale-105 transition-transform"
               >
                 {btn.text}
               </a>
@@ -135,7 +139,9 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
           <ScrollFadeIn>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">{sections[1].title}</h2>
+            <AnimatedText className="text-4xl sm:text-5xl font-bold text-white shimmer">
+              {sections[1].title}
+            </AnimatedText>
             <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full mb-8"></div>
           </ScrollFadeIn>
         </div>
@@ -143,7 +149,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {sections[1].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
-              <div className="bg-black/40 border-2 border-[#C9A24D]/20 p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform">
+              <div className="card border-2 border-[#C9A24D]/20 p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform shimmer animate-float">
                 <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
                 <p className="text-gray-200">{item.desc}</p>
               </div>
@@ -156,7 +162,9 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
           <ScrollFadeIn>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">{sections[2].title}</h2>
+            <AnimatedText className="text-4xl sm:text-5xl font-bold text-white shimmer">
+              {sections[2].title}
+            </AnimatedText>
             <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full mb-8"></div>
           </ScrollFadeIn>
         </div>
@@ -164,7 +172,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {sections[2].items.map((item, idx) => (
             <ScrollFadeIn key={idx}>
-              <div className="bg-black/40 border-2 border-[#C9A24D]/20 p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform">
+              <div className="card border-2 border-[#C9A24D]/20 p-6 rounded-lg shadow-lg text-center hover:scale-105 transition-transform shimmer animate-float">
                 <h3 className="text-xl font-bold text-[#C9A24D] mb-2">{item.title}</h3>
                 <p className="text-gray-200">{item.desc}</p>
               </div>
@@ -176,14 +184,16 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-20 text-center">
         <ScrollFadeIn>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">{sections[3].title}</h2>
+          <AnimatedText className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white shimmer">
+            {sections[3].title}
+          </AnimatedText>
           <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8">{sections[3].description}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             {sections[3].cta.map((btn, idx) =>
               btn.type === 'link' ? (
                 <Link key={idx} href={btn.href}>
-                  <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                  <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-6 py-3 rounded-lg shadow-2xl premium-hover hover:scale-105 transition-transform">
                     {btn.text}
                   </Button>
                 </Link>
@@ -193,7 +203,7 @@ export default function Home() {
                   href={btn.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex justify-center bg-[#25D366] text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform"
+                  className="inline-flex justify-center bg-[#25D366] text-white font-bold px-6 py-3 rounded-lg shadow-2xl premium-hover hover:scale-105 transition-transform"
                 >
                   {btn.text}
                 </a>
@@ -204,4 +214,4 @@ export default function Home() {
       </section>
     </div>
   );
-      }
+}
