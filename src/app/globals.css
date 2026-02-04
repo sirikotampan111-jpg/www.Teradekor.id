@@ -1,112 +1,83 @@
-/* =====================
-   Tailwind Imports
-===================== */
 @import "tailwindcss";
 @import "tw-animate-css";
 
 /* =====================
    Theme Variables
 ===================== */
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --radius: 0.625rem;
-
-  /* Background & Foreground */
   --background: #E8E8E8;
   --foreground: #1E1E1E;
-
-  /* Primary Gold/Bronze */
   --primary: #C9A24D;
   --primary-foreground: #FFFFFF;
   --primary-hover: #B89B5E;
-
-  /* Secondary Dark */
   --secondary: #1E1E1E;
   --secondary-foreground: #FFFFFF;
   --secondary-hover: #2A2A2A;
-
-  /* Card */
   --card: #F5F5F5;
   --card-foreground: #1E1E1E;
-
-  /* Accent */
   --accent: #C9A24D;
   --accent-foreground: #FFFFFF;
-
-  /* Muted */
   --muted: #D3D3D3;
   --muted-foreground: #4A4A4A;
-
-  /* Borders, Ring, Input */
   --border: #C0C0C0;
   --input: #C0C0C0;
   --ring: #C9A24D;
-
-  /* Popover */
   --popover: #FFFFFF;
   --popover-foreground: #1E1E1E;
-
-  /* Destructive */
   --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-
-  /* Chart Colors */
-  --chart-1: #C9A24D;
-  --chart-2: #B89B5E;
-  --chart-3: #E8D5A3;
-  --chart-4: #1E1E1E;
-  --chart-5: #4A4A4A;
-}
-
-/* Dark Mode Variables */
-.dark {
-  --background: #1E1E1E;
-  --foreground: #E8E8E8;
-  --primary: #C9A24D;
-  --primary-foreground: #1E1E1E;
-  --primary-hover: #D4AF6A;
-  --secondary: #2A2A2A;
-  --secondary-foreground: #FFFFFF;
-  --card: #2A2A2A;
-  --card-foreground: #E8E8E8;
-  --accent: #C9A24D;
-  --accent-foreground: #1E1E1E;
-  --muted: #2A2A2A;
-  --muted-foreground: #A0A0A0;
-  --border: #4A4A4A;
-  --input: #4A4A4A;
-  --ring: #C9A24D;
-  --popover: #2A2A2A;
-  --popover-foreground: #E8E8E8;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-  --chart-4: #FFFFFF;
-  --chart-5: #A0A0A0;
 }
 
 /* =====================
    Base Styles
 ===================== */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
+  * { @apply border-border outline-ring/50; }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground relative;
     font-family: var(--font-poppins), system-ui, sans-serif;
-    margin:0;
-    padding:0;
   }
+  h1,h2,h3,h4,h5,h6 { font-family: var(--font-playfair), Georgia, serif; }
+  p,a,span { color: var(--foreground); }
+}
 
-  h1,h2,h3,h4,h5,h6 {
-    @apply font-display;
-    font-family: var(--font-playfair), Georgia, serif;
-  }
+/* =====================
+   Video Background Helper
+===================== */
+.video-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -20;
+}
+.video-overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index:-10;
+}
 
-  p, span, a {
-    @apply text-foreground;
+/* =====================
+   Animations
+===================== */
+@keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px);} }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+.shimmer::before {
+  content:"";
+  position:absolute; top:0; left:-100%;
+  width:100%; height:100%;
+  background: linear-gradient(90deg, transparent, rgba(201,162,77,0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 0%{left:-100%}100%{left:100%} }
+
+.card { @apply rounded-lg shadow-lg bg-card text-card-foreground transition-transform; }
+.card:hover { transform: translateY(-5px); box-shadow:0 15px 40px rgba(201,162,77,0.2); }    @apply text-foreground;
   }
 }
 
