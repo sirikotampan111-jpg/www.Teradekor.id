@@ -2,58 +2,60 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check, Phone, MessageCircle, ArrowRight, Heart } from 'lucide-react';
+import { Check, Phone, MessageCircle, ArrowRight, Star, Award, Clock, Shield, Zap, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
-const logo = '/logo.jpg'; // Logo semua section
+const logo = '/logo.jpg'; // Semua logo pakai logo.jpg
 
 const advantages = [
-  { icon: logo, title: 'Terima Beres', description: 'Dari desain hingga pemasangan, kami tangani semua dengan profesional.' },
-  { icon: logo, title: 'Kualitas Premium', description: 'Material berkualitas tinggi dengan standar internasional.' },
-  { icon: logo, title: 'Harga Terjangkau', description: 'Solusi premium dengan harga yang kompetitif dan transparan.' },
-  { icon: logo, title: 'Tim Profesional', description: 'Tim ahli berpengalaman di bidang interior dan konstruksi.' },
-  { icon: logo, title: 'Material Berkualitas', description: 'Produk import dan lokal dengan kualitas terbaik.' },
-  { icon: logo, title: 'Tepat Waktu', description: 'Penyelesaian proyek sesuai jadwal yang disepakati.' },
+  { title: 'Terima Beres', description: 'Dari desain hingga pemasangan, kami tangani semua dengan profesional.' },
+  { title: 'Kualitas Premium', description: 'Material berkualitas tinggi dengan standar internasional.' },
+  { title: 'Harga Terjangkau', description: 'Solusi premium dengan harga yang kompetitif dan transparan.' },
+  { title: 'Tim Profesional', description: 'Tim ahli berpengalaman di bidang interior dan konstruksi.' },
+  { title: 'Material Berkualitas', description: 'Produk import dan lokal dengan kualitas terbaik.' },
+  { title: 'Tepat Waktu', description: 'Penyelesaian proyek sesuai jadwal yang disepakati.' },
 ];
 
 const highlights = [
-  { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.', icon: logo },
-  { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.', icon: logo },
-  { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.', icon: logo },
-  { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.', icon: logo },
-  { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.', icon: logo },
-  { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.', icon: logo },
+  { title: 'Wall Panel', description: 'Wall panel dinding premium dengan berbagai pilihan desain dan warna.' },
+  { title: 'Wallpaper', description: 'Wallpaper dan wallpaper 3D untuk mempercantik dinding ruangan.' },
+  { title: 'Vinyl & SPC', description: 'Lantai vinyl dan SPC dengan berbagai motif dan tekstur realistik.' },
+  { title: 'WPC Decking', description: 'Decking WPC tahan cuaca untuk outdoor dan semi-outdoor.' },
+  { title: 'Pintu WPC & Baja', description: 'Pintu modern dan tahan lama dengan material berkualitas.' },
+  { title: 'Jasa Interior', description: 'Layanan desain dan pemasangan interior komprehensif.' },
 ];
 
-// Animated letters component (interaktif & responsive)
-const AnimatedText = ({ text }: { text: string }) => (
-  <span className="inline-flex flex-wrap overflow-hidden">
-    {text.split('').map((char, idx) => (
-      <motion.span
-        key={idx}
-        initial={{ x: idx % 2 === 0 ? -50 : 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: idx * 0.03, type: 'spring', stiffness: 120 }}
-        className="inline-block"
-      >
-        {char}
-      </motion.span>
-    ))}
-  </span>
-);
+// Animasi teks per kata (rapih & readable)
+const AnimatedText = ({ text }: { text: string }) => {
+  return (
+    <span className="inline-block overflow-hidden">
+      {text.split(' ').map((word, i) => (
+        <motion.span
+          key={i}
+          className="inline-block mr-1"
+          initial={{ x: i % 2 === 0 ? -50 : 50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, type: 'spring', stiffness: 120 }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen font-sans">
-      {/* Full Background Overlay */}
+    <div className="relative min-h-screen">
+      {/* Background Overlay Full */}
       <div className="fixed inset-0 -z-10">
         <Image
           src="/office.jpg"
-          alt="Background"
+          alt="Background Office"
           fill
           className="object-cover object-center"
           priority
@@ -65,18 +67,18 @@ export default function Home() {
       <FloatingWhatsApp />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 pt-20">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 pt-20">
         <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full mb-8">
-          <Image src={logo} alt="Logo" width={20} height={20} className="rounded-full" />
+          <Star className="w-5 h-5 text-[#C9A24D]" />
           <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">
             <AnimatedText text="Solusi Interior Premium" />
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-4">
           <AnimatedText text="Solusi Interior & Konstruksi Premium" />
         </h1>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] mb-12">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] mb-12">
           <AnimatedText text="Terima Beres" />
         </h2>
 
@@ -110,7 +112,7 @@ export default function Home() {
       {/* Advantages Section */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
             <AnimatedText text="Mengapa Memilih Kami" />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full mb-8"></div>
@@ -121,9 +123,11 @@ export default function Home() {
             <Card key={idx} className="bg-black/40 border-2 border-[#C9A24D]/20 p-6 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group">
               <div className="flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-black/30 flex items-center justify-center">
-                  <Image src={adv.icon} alt={adv.title} width={48} height={48} className="rounded-full" />
+                  <Image src={logo} alt={adv.title} width={48} height={48} />
                 </div>
-                <h3 className="text-xl font-bold text-[#C9A24D]"><AnimatedText text={adv.title} /></h3>
+                <h3 className="text-xl font-bold text-[#C9A24D]">
+                  <AnimatedText text={adv.title} />
+                </h3>
                 <p className="text-gray-200 font-semibold"><AnimatedText text={adv.description} /></p>
               </div>
             </Card>
@@ -134,7 +138,7 @@ export default function Home() {
       {/* Highlights Section */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
             <AnimatedText text="Produk & Layanan Premium" />
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full mb-8"></div>
@@ -145,7 +149,7 @@ export default function Home() {
             <Card key={idx} className="bg-black/40 border-2 border-[#C9A24D]/20 p-8 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group">
               <div className="flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center">
-                  <Image src={hl.icon} alt={hl.title} width={48} height={48} className="rounded-full" />
+                  <Image src={logo} alt={hl.title} width={48} height={48} />
                 </div>
                 <h3 className="text-2xl font-bold text-[#C9A24D]"><AnimatedText text={hl.title} /></h3>
                 <p className="text-gray-200 font-semibold"><AnimatedText text={hl.description} /></p>
@@ -157,7 +161,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-20 text-center relative">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
           <AnimatedText text="Wujudkan Ruang Impian Anda" />
         </h2>
         <p className="text-2xl text-white/90 font-bold max-w-3xl mx-auto leading-relaxed mb-8">
@@ -180,6 +184,26 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-black/80 py-12 text-center text-gray-300">
+        <div className="mb-6">
+          <Image src={logo} alt="Terradekor Logo" width={100} height={100} className="mx-auto mb-2" />
+          <p className="font-bold text-white">Terradekor.id</p>
+          <p>PT. Opulent Interior Indonesia - Solusi interior dan konstruksi premium dengan kualitas terbaik dan harga terjangkau.</p>
+        </div>
+        <div className="flex flex-wrap justify-center gap-6 mb-6">
+          <Link href="/">Beranda</Link>
+          <Link href="/produk">Produk</Link>
+          <Link href="/layanan">Layanan</Link>
+          <Link href="/tentang">Tentang Kami</Link>
+          <Link href="/konsultasi">Konsultasi Gratis</Link>
+        </div>
+        <p className="text-sm">
+          Pergudangan Pantai Indah Dadap Blok BJ 23, Kosambi, Tangerang, Banten 15213 | ptopulentinteriors@gmail.com | 0812-5151-1997
+        </p>
+        <p className="text-xs mt-2">&copy; 2026 PT. Opulent Interior Indonesia. All rights reserved.</p>
+      </footer>
     </div>
   );
-                  }
+            }
