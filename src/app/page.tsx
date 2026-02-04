@@ -1,22 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Check, Phone, MessageCircle, ArrowRight, Star, Award, Clock, Shield, Zap, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 
 export default function Home() {
-  const [offsetY, setOffsetY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setOffsetY(window.pageYOffset);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const advantages = [
     { icon: Check, title: 'Terima Beres', description: 'Dari desain hingga pemasangan, kami tangani semua dengan profesional.' },
     { icon: Award, title: 'Kualitas Premium', description: 'Material berkualitas tinggi dengan standar internasional.' },
@@ -36,91 +26,70 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen">
       {/* Floating WhatsApp */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <FloatingWhatsApp />
-      </div>
+      <FloatingWhatsApp />
 
       {/* Hero Section */}
-      <section
-        className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: "url('/office.jpg')" }}
-      >
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201,162,77,0.1) 50px, rgba(201,162,77,0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201,162,77,0.1) 50px, rgba(201,162,77,0.1) 51px)',
+                'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(201, 162, 77, 0.1) 50px, rgba(201, 162, 77, 0.1) 51px)',
             }}
-          />
+          ></div>
         </div>
-
-        {/* Overlay Gambar / Logo dengan Parallax */}
-        <motion.img
-          src="/logo-overlay.png" // ganti dengan logo/foto kamu
-          alt="Overlay Logo"
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 md:w-96 opacity-90"
-          style={{ y: offsetY * 0.3 }}
-        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full"
-          >
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#C9A24D]/20 to-[#B89B5E]/20 border border-[#C9A24D]/30 px-6 py-3 rounded-full">
             <Star className="w-5 h-5 text-[#C9A24D]" />
-            <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">
-              Solusi Interior Premium
-            </span>
-          </motion.div>
+            <span className="text-[#C9A24D] font-bold text-sm uppercase tracking-wider">Solusi Interior Premium</span>
+          </div>
 
           {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight"
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight">
             Solusi Interior &<br />
             Konstruksi Premium<br />
             <span className="bg-gradient-to-r from-[#C9A24D] via-[#D4AF6A] to-[#C9A24D] bg-clip-text text-transparent">
               Terima Beres
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed"
-          >
+          <p className="text-xl sm:text-2xl text-gray-300 font-bold max-w-4xl mx-auto leading-relaxed">
             Dari desain, penyediaan material, hingga pembangunan dan pemasangan profesional.
-          </motion.p>
+          </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Link href="/konsultasi">
-              <Button className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] text-white font-bold px-8 py-4 rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-105 flex items-center">
-                <MessageCircle className="w-5 h-5 mr-2" /> Konsultasi Gratis
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Konsultasi Gratis
               </Button>
             </Link>
             <Link href="/produk">
-              <Button className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 rounded-lg transition transform hover:scale-105 flex items-center">
-                Lihat Produk <ArrowRight className="w-5 h-5 ml-2" />
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                Lihat Produk
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
             <a
               href="https://wa.me/6281251511997"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-105"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
             >
               <Phone className="w-5 h-5" />
               <span>Hubungi Kami</span>
@@ -129,20 +98,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Advantages Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      {/* Advantages Section with Parallax Background */}
+      <section
+        className="py-20 text-white relative bg-black"
+        style={{
+          backgroundImage: "url('/office.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed', // parallax effect
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div> {/* overlay supaya list terbaca */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 relative z-10">
             <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
               Mengapa Memilih <span className="text-[#C9A24D]">Kami</span>
             </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advantages.map((adv, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            {advantages.map((adv, index) => (
               <Card
-                key={i}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-[#C9A24D]/20 p-6 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+                key={index}
+                className="bg-black/70 border-2 border-[#C9A24D]/20 p-6 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
               >
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#C9A24D] to-[#B89B5E] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -157,7 +136,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product Highlights, CTA, dll bisa ditambahkan sama logika parallax yang sama */}
+      {/* Product & Service Highlights Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-gray-900 mb-4">
+              Produk & Layanan <span className="text-[#C9A24D]">Premium</span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] mx-auto rounded-full"></div>
+            <p className="text-xl text-gray-700 font-bold mt-8 max-w-2xl mx-auto">
+              Solusi lengkap untuk kebutuhan interior dan konstruksi Anda
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {highlights.map((item, index) => (
+              <Card
+                key={index}
+                className="bg-white border-2 border-gray-200 p-8 hover:border-[#C9A24D] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+              >
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-2xl font-bold text-gray-900">{item.title}</h3>
+                  <p className="text-gray-700 font-semibold">{item.description}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/produk">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#C9A24D] to-[#B89B5E] hover:from-[#D4AF6A] hover:to-[#C9A24D] text-white font-bold px-8 py-4 text-lg rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Lihat Semua Produk
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/layanan">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-[#C9A24D] text-[#C9A24D] hover:bg-[#C9A24D] hover:text-white font-bold px-8 py-4 text-lg rounded-lg transition-all duration-300 transform hover:scale-105"
+                >
+                  Lihat Layanan
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-[#C9A24D] via-[#D4AF6A] to-[#B89B5E]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white">
+              Wujudkan Ruang Impian Anda
+            </h2>
+            <p className="text-2xl text-white/90 font-bold max-w-3xl mx-auto leading-relaxed">
+              Bersama Terradekor, transformasi ruang Anda menjadi masterpiece yang elegan dan fungsional
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+              <Link href="/konsultasi">
+                <Button
+                  size="lg"
+                  className="bg-white text-[#C9A24D] hover:bg-gray-100 font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  Konsultasi Gratis Sekarang
+                </Button>
+              </Link>
+              <a
+                href="https://wa.me/6281251511997"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 bg-gray-900 text-white font-bold px-8 py-4 text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Phone className="w-5 h-5" />
+                <span>WhatsApp Kami</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
-          }
+}
