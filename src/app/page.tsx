@@ -24,23 +24,23 @@ const sections = [
     items: [
       { title: 'Terima Beres', desc: 'Dari desain hingga pemasangan, kami tangani profesional.' },
       { title: 'Kualitas Premium', desc: 'Material berkualitas tinggi standar internasional.' },
-      { title: 'Harga Terjangkau', desc: 'Solusi premium dengan harga kompetitif dan transparan.' },
-      { title: 'Tim Profesional', desc: 'Ahli berpengalaman di interior & konstruksi.' },
-      { title: 'Material Berkualitas', desc: 'Produk import & lokal terbaik.' },
-      { title: 'Tepat Waktu', desc: 'Penyelesaian proyek sesuai jadwal.' },
-    ],
-  },
-  {
-    title: 'Produk & Layanan Premium',
-    items: [
-      { title: 'Wall Panel', desc: 'Wall panel dinding premium dengan berbagai desain.' },
-      { title: 'Wallpaper', desc: 'Wallpaper 2D & 3D untuk mempercantik ruangan.' },
-      { title: 'Vinyl & SPC', desc: 'Lantai vinyl & SPC motif realistik.' },
-      { title: 'WPC Decking', desc: 'Decking tahan cuaca untuk outdoor/semi-outdoor.' },
-      { title: 'Pintu WPC & Baja', desc: 'Pintu modern & tahan lama.' },
-      { title: 'Jasa Interior', desc: 'Desain & pemasangan interior komprehensif.' },
-    ],
-  },
+      const whyItems = [
+  { title: 'Terima Beres', img: '/gallery/why-1.jpg' },
+  { title: 'Kualitas Premium', img: '/gallery/why-2.jpg' },
+  { title: 'Harga Terjangkau', img: '/gallery/why-3.jpg' },
+  { title: 'Tim Profesional', img: '/gallery/why-4.jpg' },
+  { title: 'Material Berkualitas', img: '/gallery/why-5.jpg' },
+  { title: 'Tepat Waktu', img: '/gallery/why-6.jpg' },
+];
+
+const productItems = [
+  { title: 'Wall Panel', img: '/gallery/product-1.jpg' },
+  { title: 'Wallpaper', img: '/gallery/product-2.jpg' },
+  { title: 'Vinyl & SPC', img: '/gallery/product-3.jpg' },
+  { title: 'WPC Decking', img: '/gallery/product-4.jpg' },
+  { title: 'Pintu WPC & Baja', img: '/gallery/product-5.jpg' },
+  { title: 'Jasa Interior', img: '/gallery/product-6.jpg' },
+];
   {
     title: 'Wujudkan Ruang Impian Anda',
     description:
