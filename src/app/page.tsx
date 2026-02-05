@@ -1,25 +1,25 @@
-'use client';
+ 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const advantages = [
-  { title: 'Material Berkualitas', desc: 'Kami hanya menggunakan material pilihan dengan standar premium.' },
-  { title: 'Tim Profesional', desc: 'Dikerjakan oleh tenaga ahli berpengalaman di bidang interior.' },
-  { title: 'Desain Elegan', desc: 'Mengutamakan estetika modern dan fungsional.' },
-  { title: 'Harga Transparan', desc: 'Tanpa biaya tersembunyi, semua jelas sejak awal.' },
-  { title: 'Tepat Waktu', desc: 'Komitmen terhadap jadwal pengerjaan.' },
-  { title: 'After Sales', desc: 'Layanan purna jual yang responsif dan bertanggung jawab.' },
+  { title: 'Terima Beres', desc: 'Dari desain hingga pemasangan, kami tangani profesional.' },
+  { title: 'Kualitas Premium', desc: 'Material berkualitas tinggi standar premium.' },
+  { title: 'Harga Terjangkau', desc: 'Solusi terbaik dengan harga transparan.' },
+  { title: 'Tim Profesional', desc: 'Dikerjakan oleh tenaga ahli berpengalaman.' },
+  { title: 'Material Berkualitas', desc: 'Pemilihan material terbaik untuk jangka panjang.' },
+  { title: 'Tepat Waktu', desc: 'Komitmen penyelesaian sesuai jadwal.' },
 ];
 
 const products = [
   { title: 'Wall Panel', desc: 'Panel dinding premium untuk tampilan mewah.' },
-  { title: 'WPC', desc: 'Material tahan lama untuk interior dan eksterior.' },
   { title: 'Wallpaper', desc: 'Beragam motif eksklusif dan modern.' },
-  { title: 'PVC Marmer', desc: 'Alternatif marmer dengan harga lebih efisien.' },
-  { title: 'Vinyl & SPC', desc: 'Lantai berkualitas tinggi dan tahan lama.' },
-  { title: 'Custom Interior', desc: 'Solusi interior sesuai kebutuhan Anda.' },
+  { title: 'Vinyl', desc: 'Lantai kuat, awet, dan estetik.' },
+  { title: 'WPC', desc: 'Material tahan cuaca untuk interior & eksterior.' },
+  { title: 'Pintu Baja', desc: 'Pintu kokoh dengan desain modern.' },
+  { title: 'Jasa Interior', desc: 'Solusi interior sesuai kebutuhan Anda.' },
 ];
 
 export default function HomePage() {
@@ -67,32 +67,32 @@ export default function HomePage() {
       {/* SECTION 1 */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
 
-        {/* JUDUL */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
             Kenapa Memilih Kami
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Kami mengutamakan kualitas, ketelitian, dan kepuasan pelanggan dalam setiap proyek.
-          </p>
         </div>
 
-        {/* GRID CARD 1 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {advantages.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-black/40 border-2 border-[#C9A24D]/20
-              p-4 rounded-lg shadow-lg text-center
-              hover:scale-105 transition-transform"
+              className="bg-black/40 border-2 border-[#C9A24D]/20 p-4 rounded-lg text-center"
             >
               <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                 <Image
-                  src={`/gallery/why-${idx + 1}.jpg`}
+                  src={[
+                    '/gallery/terima-beres.jpg',
+                    '/gallery/kualitas-premium.jpg',
+                    '/gallery/harga-terjangkau.jpg',
+                    '/gallery/tim-profesional.jpg',
+                    '/gallery/material-berkualitas.jpg',
+                    '/gallery/tepat-waktu.jpg',
+                  ][idx]}
                   alt={item.title}
                   fill
                   className="object-cover"
@@ -102,9 +102,7 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-200">
-                {item.desc}
-              </p>
+              <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -113,32 +111,32 @@ export default function HomePage() {
       {/* SECTION 2 */}
       <section className="px-6 py-24 max-w-7xl mx-auto">
 
-        {/* JUDUL */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#C9A24D] mb-4">
             Produk & Layanan Premium
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Pilihan produk dan layanan terbaik untuk hunian dan komersial Anda.
-          </p>
         </div>
 
-        {/* GRID CARD 2 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-black/40 border-2 border-[#C9A24D]/20
-              p-4 rounded-lg shadow-lg text-center
-              hover:scale-105 transition-transform"
+              className="bg-black/40 border-2 border-[#C9A24D]/20 p-4 rounded-lg text-center"
             >
               <div className="relative w-full h-48 mb-4 rounded-md overflow-hidden">
                 <Image
-                  src={`/gallery/product-${idx + 1}.jpg`}
+                  src={[
+                    '/gallery/wallpanel.jpg',
+                    '/gallery/wallpaper.jpg',
+                    '/gallery/vinil.jpg',
+                    '/gallery/wpc.jpg',
+                    '/gallery/pintu-baja.jpg',
+                    '/gallery/terima-jasa.jpg',
+                  ][idx]}
                   alt={item.title}
                   fill
                   className="object-cover"
@@ -148,23 +146,9 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-[#C9A24D] mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-200">
-                {item.desc}
-              </p>
+              <p className="text-gray-200">{item.desc}</p>
             </motion.div>
           ))}
-        </div>
-
-        {/* CTA BAWAH */}
-        <div className="text-center mt-20">
-          <Link
-            href="https://wa.me/62XXXXXXXXXX"
-            className="inline-block px-10 py-4 rounded-full
-            bg-[#C9A24D] text-black font-semibold text-lg
-            hover:bg-[#e3bb5f] transition-all duration-300 shadow-lg"
-          >
-            Hubungi Kami Sekarang
-          </Link>
         </div>
       </section>
 
